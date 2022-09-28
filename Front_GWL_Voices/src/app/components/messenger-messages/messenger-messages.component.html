@@ -1,0 +1,31 @@
+<div class="container my-5">
+    <i class="fa-solid fa-circle-left fs-1 back" [routerLink]="['/dashboard', 'messenger']"></i>
+    <div class="d-flex justify-content-around align-items-center">
+        <button type="button" class="btn rounded-pill px-3 py-1 mb-4" (click)="newAnswer()">New Answer</button>
+    </div>
+    <div class="shadow messenger-box">
+        <div class="row p-3">
+            <div>
+                <h3 class="text-white">{{messages?.length !== 0 ? titlePost : 'No messages'}}</h3>
+            </div>
+            <div *ngIf="messages?.length !== 0">
+                <div *ngFor="let message of messages" class="col-12">
+                    <div class="border shadow p-2 pe-3 my-2 answer">
+                        <div class="row">
+                            <div class="col-11">
+                                <p>{{message?.text}}</p>
+                                <small class="align-items-center"> <em>{{message?.username}} has answered
+                                        <strong>{{message?.created_at | date: 'MMM dd, yyyy, HH:mm'
+                                            }}</strong></em></small>
+                            </div>
+                            <div *ngIf="user?.admin || user?.id === message?.users_id "
+                                class="col-1 d-flex  align-items-center justify-content-center">
+                                <i class="fa-solid fs-4 fa-xmark ms-auto text-danger" (click)="delete(message?.id)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

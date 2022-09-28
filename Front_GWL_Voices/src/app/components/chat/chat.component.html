@@ -1,0 +1,24 @@
+<div class="bg">
+  <div class="container">
+    <div class="my-5 box">
+      <div class="p-4 border border-1 rounded neonChat">
+        <div class="bg-white">
+          <div class="shadow chatBox p-4 rounded-top scrollChat" #scrollChat>
+            <div>
+              <ul class="messages" id="messages" *ngIf="messageList?.length !== 0">
+                <li *ngFor="let message of messageList">[ {{message.created_at | date: 'HH:mm'}} ] {{message.username}}:
+                  {{message.text}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container shadow p-4 d-flex justify-content-between gap-4 rounded test2">
+          <input type="text" id="inputName" placeholder="Nick" class="d-none p-2" value="nickTest">
+          <input type="text p-2" class="w-100" id="inputMessage" placeholder="Write something" [(ngModel)]="message"
+            (keypress)="sendMessage2($event)">
+          <button class="btn rounded-pill" id="send" (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

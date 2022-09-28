@@ -1,0 +1,93 @@
+<div class="container mt-5">
+    <div class="text-center" *ngIf="user?.admin === 1">
+        <button type="button" class="btn rounded-pill px-3 py-1 mb-4"
+            [routerLink]="['/dashboard', 'directory-register']">New contact</button>
+    </div>
+    <div *ngIf="contacts?.length !== 0 else Withoutcontacts">
+        <table class="table shadow table-hover mb-0">
+            <thead class="table-blue">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th class="d-none d-md-table-cell" scope="col">E-mail</th>
+                    <th class="d-none d-md-table-cell" scope="col">Role</th>
+                    <th class="text-center" scope="col" colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of contacts | paginate: {itemsPerPage: 15, currentPage: page }">
+                    <td>{{contact.name}} {{contact.surname}}</td>
+                    <td class="d-none d-md-table-cell">{{contact.email}}</td>
+                    <td class="d-none d-md-table-cell">{{contact.role}}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-between align-items-center gap-2"><i
+                                class="fa-solid fa-briefcase color-briefcase d-block d-lg-none"
+                                (click)="showRole(contact.id)"></i><i class="fa-solid fa-phone color-phone"
+                                (click)="showPhone(contact.id)"></i><i class="fa-solid fa-envelope color-envelope"
+                                data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop' + contact.id"></i>
+                            <i class="fa-solid fa-trash-can color-red" (click)="deleteContact(contact.id)"
+                                *ngIf="user?.admin === 1"></i>
+                        </div>
+                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" [id]="'staticBackdrop' + contact.id" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Send email to: {{contact.name}}
+                                        {{contact.surname}}
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form class=" form-control m-auto border-0 p-4 my-3 mb-5 bg"
+                                        [formGroup]=" emailForm" (ngSubmit)="sendEmail(contact.email)">
+                                        <div class="form-floating">
+                                            <div class="input_form mb-3">
+                                                <label for="mailto" class="form-label">Email to</label>
+                                                <input class="form-control" id="mailto" type=" mailto"
+                                                    placeholder="{{contact?.email}}" disabled>
+                                            </div>
+                                            <div class="input_form mb-3">
+                                                <label for="subject" class="form-label">Subject</label>
+                                                <input type="text" class="form-control" id="subject"
+                                                    placeholder="Please write some subject" formControlName="subject">
+                                            </div>
+                                            <div class="input_form">
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                                        id="floatingTextarea2" style="height: 100px"
+                                                        formControlName="text"></textarea>
+                                                    <label for="floatingTextarea2">Comments</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-direction flex-column p-3 mt-3 gap-3">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn button-back rounded-pill px-3 py-3"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn rounded-pill px-3 py-3"
+                                                    data-bs-dismiss="modal">Send</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #Withoutcontacts>
+        <h6>Without Contacts</h6>
+    </ng-template>
+</div>
+<div class="mt-5">
+    <pagination-controls class="text-center" (pageChange)="page = $event" [responsive]="true" [autoHide]="true"
+        previousLabel="Previous" nextLabel="Next">
+    </pagination-controls>
+</div>

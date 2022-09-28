@@ -1,0 +1,33 @@
+nav {
+    background-color: #0e6ebe;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.nav-button {
+    color: #ffffff;
+}
+
+.logOut {
+    cursor: pointer;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+a.nav-link:hover {
+    color: #d5e848 !important;
+}
+
+a.nav.ms-2 {
+    color: #d5e848 !important;
+}
+
+.activate {
+    color: #d5e848 !important;
+}

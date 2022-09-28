@@ -1,0 +1,49 @@
+.chatBox {
+    background-position: cover;
+    background-repeat: no-repeat;
+    height: 65vh;
+    color: #0e6ebe;
+    background-color: rgba(128, 128, 128, 0.048);
+}
+
+.scrollChat {
+    overflow: scroll;
+}
+
+input {
+    border-color: #0e6ebe;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.neonChat {
+    opacity: 0.92;
+    box-shadow: 0px 0px 5px 5px #d5e848, 0px 0px 10px 5px #0e6ebe;
+    overflow: hidden;
+    margin-inline: auto;
+    background-color: rgba(34, 51, 10, 0.045)
+}
+
+.messages li {
+    list-style: none;
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+.bg {
+    background-image: url('../../../assets/Images/bolsa2.png');
+}
+
+.box {
+    background-color: white;
+    opacity: 0.9;
+}

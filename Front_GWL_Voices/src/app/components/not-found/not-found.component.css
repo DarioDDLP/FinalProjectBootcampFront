@@ -1,0 +1,37 @@
+.viewport {
+    height: 100vh;
+}
+
+@media (max-width: 1200px) {
+    .viewport {
+        height: 100vh;
+        background-color: rgb(20, 99, 169);
+    }
+}
+
+html {
+    background-color: #0e6fbed1;
+}
+
+.bg {
+    background-image: url('../../../assets/Images/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 1200px) {
+    .bg {
+        background-image: url('../../../assets/Images/background.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+h1 {
+    color: rgb(213, 232, 72);
+}
+
+.bg-blue {
+    background-color: rgb(20, 89, 149);
+}

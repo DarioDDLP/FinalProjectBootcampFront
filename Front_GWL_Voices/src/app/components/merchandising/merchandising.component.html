@@ -1,0 +1,102 @@
+<div class="container my-5">
+
+    <div class="d-flex justify-content-center align-items-center" *ngIf="user?.admin">
+        <button type="button" class="btn rounded-pill px-3 py-1 mb-4"
+            [routerLink]="['/dashboard', 'product-register']">Add New
+            Product</button>
+    </div>
+    <div class="col-12 col-lg-2 mt-2 mt-lg-0 w-50 mx-auto">
+        <label for="">Filter products</label>
+        <div class="input-group">
+            <select class="form-select mt-2" id="category" (change)="filterByCategory($event)">
+                <option value="">Select a category</option>
+                <option [value]='category.category' *ngFor="let category of categories">{{category.category}}</option>
+            </select>
+        </div>
+    </div>
+    <section class="row mt-5">
+        <div class="d-flex flex-wrap gap-5 gap-lg-5 justify-content-center">
+            <article class="" *ngFor="let product of products | paginate: {itemsPerPage: 9, currentPage: page }">
+                <div class="border-neon  shadow p-3">
+                    <div class="profile-img "
+                        [style]="'background-image:  url(http://localhost:3000/products/' + product.photo + ')'">
+                    </div>
+                    <div class="card-body mx-auto text-center">
+                        <h5 class=" card-title text-center mt-3">{{product.title}}</h5>
+                        <h6>{{product.description}}</h6>
+                        <button class="btn mt-3" data-bs-toggle="modal"
+                            [attr.data-bs-target]="'#staticBackdrop' + product.id">Enquire</button>
+                        <button class="btn ms-2 mt-3" *ngIf="user?.admin" (click)="changeStatus(product.id)">Delete
+                            Product</button>
+                    </div>
+                </div>
+                <div class="modal fade" [id]="'staticBackdrop' + product.id" data-bs-backdrop="static"
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Request information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class=" form-control m-auto border-0 p-4 mb-3 mb-5 bg" [formGroup]=" emailForm"
+                                    (ngSubmit)="sendEmail(product)">
+                                    <div class="form-floating">
+                                        <div class="input_form mb-3">
+                                            <div class="mb-4">
+                                                <h4 class="">{{product.title}}</h4>
+                                                <h6 class="">{{product.category}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="input_form mb-3">
+                                            <label for="eventInfo" class="form-label">Event info</label>
+                                            <input type="text" class="form-control" id="eventInfo"
+                                                formControlName="eventInfo">
+                                        </div>
+                                        <div class="input_form mb-3">
+                                            <label for="deliveryAddress" class="form-label">Delivery address</label>
+                                            <input type="text" class="form-control" id="deliveryAddress"
+                                                formControlName="deliveryAddress">
+                                        </div>
+                                        <div class="d-flex gap-3 justify-content-between">
+                                            <div class=" input_form mb-3">
+                                                <label for="date" class="form-label">Date</label>
+                                                <input type="date" class="form-control" id="date"
+                                                    formControlName="date">
+                                            </div>
+                                            <div class="input_form mb-3">
+                                                <label for="quantity" class="form-label">Quantity</label>
+                                                <input type="number" class="form-control" id="quantity"
+                                                    formControlName="quantity">
+                                            </div>
+                                        </div>
+                                        <div class="input_form">
+                                            <div class="form-floating">
+                                                <textarea class="form-control" placeholder="Leave a comment here"
+                                                    id="floatingTextarea2" style="height: 100px"
+                                                    formControlName="text"></textarea>
+                                                <label for="floatingTextarea2">Comments</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-direction flex-column p-3 mt-3 gap-3">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn button-back rounded-pill px-3 py-3"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn rounded-pill px-3 py-3"
+                                                data-bs-dismiss="modal">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+<pagination-controls class="text-center" (pageChange)="page = $event" [responsive]="true" [autoHide]="true"
+    previousLabel="Previous" nextLabel="Next">
+</pagination-controls>

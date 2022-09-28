@@ -1,0 +1,27 @@
+<div class="container my-5">
+    <div class="d-flex justify-content-center align-items-center">
+        <button *ngIf="user?.admin === 1" type="button" class="btn rounded-pill px-3 py-1 mb-4"
+            (click)="newMessage()">New Post</button>
+    </div>
+    <div class="shadow messenger-box">
+        <div class="row p-3">
+            <div *ngFor="let thread of threads" class="col-12">
+                <div *ngIf="thread?.status === 1" class="border shadow p-2 pe-3 my-2 thread">
+                    <div class="row">
+                        <div class="col-11" (click)="navigate(thread)">
+                            <h4><strong><em>{{thread?.title}}</em></strong></h4>
+                            <small class="align-items-center">Created at <strong>{{thread.created_at | date:
+                                    'MMM, dd, yyyy, HH:mm'}}</strong> by {{thread.username}}</small>
+                        </div>
+                        <div class="col-1 d-flex  align-items-center justify-content-center">
+                            <i *ngIf="user?.admin === 1" class="fa-solid fs-4 fa-xmark ms-auto text-danger"
+                                (click)="changeStatus(thread.id)"></i>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

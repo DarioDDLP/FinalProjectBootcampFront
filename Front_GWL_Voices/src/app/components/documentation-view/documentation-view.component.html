@@ -1,0 +1,126 @@
+<div class="container mt-5">
+    <form [formGroup]="filesForm" (ngSubmit)="getDataForm()">
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <input type="file" class="form-control" id="file" formControlName="file" (change)="uploadDoc($event)">
+            </div>
+            <div class="col-12 col-lg-2 mt-2 mt-lg-0">
+                <select class="form-select" id="category" formControlName="category_id">
+                    <option selected value="">Type</option>
+                    <option value=1>Public</option>
+                    <option value=2>Private</option>
+                </select>
+            </div>
+            <div class="col-12 col-lg-3 mt-2 mt-lg-0">
+                <select class="form-select" id="category" formControlName="subcategory">
+                    <option selected value="">Category</option>
+                    <option value="internal">Internal</option>
+                    <option value="external">External</option>
+                </select>
+            </div>
+            <div class="col-12 col-lg-2 mt-2 mt-lg-0">
+                <button type="submit" class="btn rounded-pill px-3 py-1" [disabled]="!filesForm.valid">Upload</button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="user?.admin === 1">
+        <h5 class="mt-3">Pending authorization</h5>
+        <div *ngIf="notApproved?.length !== 0 else WithoutDocuments" class="table-responsive shadow">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Member</th>
+                        <th class="d-none d-md-table-cell" scope="col">Date</th>
+                        <th class="d-none d-md-table-cell" scope="col">Category</th>
+                        <th class="text-center" scope="col" colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let document of notApproved">
+                        <td>{{document.filename}}</td>
+                        <td>{{document.username}}</td>
+                        <td class="d-none d-md-table-cell">{{document.date | date: 'MM-dd-yyyy'}}</td>
+                        <td class="d-none d-md-table-cell">{{document.category}} / {{document.subcategory}}</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-between align-items-center gap-2">
+                                <i class=" fa-solid fa-check color-green" (click)="authorization(document.id)"></i>
+                                <a [href]="'http://localhost:3000/documents/' + document.route" target="_blank"><i
+                                        class="fa-solid fa-cloud-arrow-down color-blue"></i></a>
+                                <i class="fa-solid fa-trash-can color-red" (click)="delete(document.id)"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ng-template #WithoutDocuments>
+        <h6>
+            Without documents to approve
+        </h6>
+    </ng-template>
+</div>
+<div class="container my-5">
+    <h5 class="mt-5">Public Documentation</h5>
+    <div class="table-responsive shadow">
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Member</th>
+                    <th class="d-none d-md-table-cell" scope="col">Date</th>
+                    <th class="d-none d-md-table-cell" scope="col">Subcategory</th>
+                    <th class="text-center" scope="col" colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let document of approved">
+                    <td>{{document.filename}}</td>
+                    <td>{{document.username}}</td>
+                    <td class="d-none d-md-table-cell">{{document.date | date: 'MM-dd-yyyy'}}</td>
+                    <td class="d-none d-md-table-cell">{{document.subcategory}}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-end align-items-center gap-3">
+                            <a [href]="'http://localhost:3000/documents/' + document.route" target="_blank"><i
+                                    [ngClass]="{'d-none': document.category === 'private'}"
+                                    class="fa-solid fa-cloud-arrow-down color-blue"></i></a>
+                            <i *ngIf="document.user_id === user.id || user.admin === 1"
+                                class="fa-solid fa-trash-can color-red" (click)="delete(document.id)"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="my-5">
+        <h5 class="mt-5">Private Documentation</h5>
+        <div class="table-responsive shadow">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Member</th>
+                        <th class="d-none d-md-table-cell" scope="col">Date</th>
+                        <th class="d-none d-md-table-cell" scope="col">Subcategory</th>
+                        <th class="text-center" scope="col" colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let document of userDoc">
+                        <td>{{document.filename}}</td>
+                        <td>{{document.username}}</td>
+                        <td class="d-none d-md-table-cell">{{document.date | date: 'MM-dd-yyyy'}}</td>
+                        <td class="d-none d-md-table-cell">{{document.subcategory}}</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-end align-items-center gap-3">
+                                <a [href]="'http://localhost:3000/documents/' + document.route" target="_blank"><i
+                                        class="fa-solid fa-cloud-arrow-down color-blue"></i></a>
+                                <i class="fa-solid fa-trash-can color-red" (click)="delete(document.id)"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

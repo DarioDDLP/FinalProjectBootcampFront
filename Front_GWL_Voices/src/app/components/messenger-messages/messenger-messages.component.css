@@ -1,0 +1,30 @@
+.messenger-box {
+    background-color: #0e6ebe;
+    border-radius: 10px;
+}
+
+.answer {
+    border-radius: 10px;
+    background-color: hsla(0, 0%, 100%, 0.912);
+}
+
+.answer:hover {
+    border-radius: 10px;
+    background-color: hsla(0, 0%, 100%, 0.682);
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+.back {
+    color: #0e6ebe;
+    cursor: pointer;
+}

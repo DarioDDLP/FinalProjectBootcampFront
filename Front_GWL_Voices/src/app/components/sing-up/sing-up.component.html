@@ -1,0 +1,52 @@
+<div class="bg">
+    <section class="container">
+        <div class="row col-12 col-md-7 col-lg-7 viewPort justify-content-center align-items-center m-auto">
+            <form [formGroup]="singupForm" (ngSubmit)="getDataForm()" class="form-control border-0 p-5">
+                <h2 class="text-center">Register new member</h2>
+                <div>
+                    <label for="name" class="form-label">Name *</label>
+                    <input type="name" class="form-control form-control-lg" id="name" formControlName="name"
+                        [ngClass]="checkField('name')">
+                    <p class="error" *ngIf="checkControl('name', 'required')">The field is required.</p>
+                </div>
+                <div>
+                    <label for="surname" class="form-label">Surname *</label>
+                    <input type="surname" class="form-control form-control-lg" id="surname" formControlName="surname"
+                        [ngClass]="checkField('surname')">
+                    <p class="error" *ngIf="checkControl('surname', 'required')">The field is required.</p>
+                </div>
+                <div>
+                    <label for="email" class="form-label">E-mail *</label>
+                    <input type="email" class="form-control form-control-lg" id="email" formControlName="email"
+                        [ngClass]="checkField('email')">
+                    <p class="error" *ngIf="checkControl('email', 'required')">The field is required.</p>
+                    <p class="error" *ngIf="checkControl('email', 'pattern')">The email is not valid.</p>
+                </div>
+                <div class="mt-4">
+                    <label for="password" class="form-label">Password *</label>
+                    <input type="password" class="form-control form-control-lg" id="password" formControlName="password"
+                        [ngClass]="checkField('password')">
+                    <p class="error" *ngIf="checkControl('password', 'required')">The field is required.</p>
+                    <p class="error" *ngIf="checkControl('password', 'pattern')">The password must be between 8 and
+                        16 characters long, with at least one digit, at least one lowercase letter, and at
+                        least one uppercase letter.
+                        It can NOT have other symbols.</p>
+                </div>
+                <div class="mt-4">
+                    <label for="repeatPass" class="form-label">Repeat Password *</label>
+                    <input type="password" class="form-control form-control-lg" id="repeatPass"
+                        formControlName="repeatPass" [ngClass]="checkField('repeatPass')">
+                    <p class="error" *ngIf="checkControl('repeatPass', 'required')">The field is required.</p>
+                    <p class="error mt-1"
+                        *ngIf="singupForm.hasError('passwordvalidator') && !checkControl('repeatPass', 'required')">The
+                        passwords don't match
+                    </p>
+                </div>
+                <div class="mt-4 d-flex justify-content-end">
+                    <button type="submit" class="button btn rounded-pill px-4 py-3"
+                        [disabled]="!singupForm.valid">Register user</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

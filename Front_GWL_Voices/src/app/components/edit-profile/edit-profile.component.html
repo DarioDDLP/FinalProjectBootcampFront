@@ -1,0 +1,65 @@
+<section>
+    <div class="container-fluid container-lg">
+        <div class="neon my-5 bg">
+            <div class="row">
+                <div class="col2 col-md-12 col-lg-8 bg2 m-auto">
+                    <div class="">
+                        <div class="profile-img mt-3 profile-img"
+                            [style]="'background-image: url(' + user?.image + ')'">
+                        </div>
+                        <form class=" form-control m-auto border-0 shadow p-3 mt-3 mb-5" [formGroup]=" profileForm"
+                            (ngSubmit)="getDataForm()">
+                            <h3 class="mb-4 text-center">Edit profile</h3>
+                            <div>
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="image" (change)="onChange($event)">
+                            </div>
+                            <div class="input_form">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" formControlName="name">
+                            </div>
+                            <div class="input_form">
+                                <label for="surname" class="form-label">Surname</label>
+                                <input type="text" class="form-control" id="surname" formControlName="surname">
+                            </div>
+                            <div class="input_form">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input class="form-control" id="email" type=" text" placeholder="{{user?.email}}"
+                                    disabled>
+                            </div>
+                            <div class="input_form">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone"
+                                    placeholder="Please update this field" formControlName="phone">
+                            </div>
+                            <div class="input_form">
+                                <label for="working_group" class="form-label">Working Group</label>
+                                <input type="text" class="form-control" id="working_group"
+                                    placeholder="Please update this field" formControlName="working_group">
+                            </div>
+                            <div class="input_form">
+                                <label for="live_in" class="form-label">Live in</label>
+                                <input type="text" class="form-control" id="live_in"
+                                    placeholder="Please update this field" formControlName="live_in">
+                            </div>
+                            <div class="input_form">
+                                <label for="postal_address" class="form-label">Postal address</label>
+                                <input type="text" class="form-control" id="postal_address"
+                                    placeholder="Please update this field" formControlName="postal_address">
+                            </div>
+                            <div class="mt-4">
+                                <a class="m-0" [routerLink]="['/dashboard', 'reset-password']">Click here to reset
+                                    password</a>
+                            </div>
+                            <div class="d-flex flex-direction flex-column p-3 mt-3 gap-3">
+                                <button type="submit" class="btn rounded-pill px-3 py-3">Save</button>
+                                <button type="button" class="btn button-back rounded-pill px-3 py-3"
+                                    [routerLink]="['/dashboard', 'profile']">Back</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

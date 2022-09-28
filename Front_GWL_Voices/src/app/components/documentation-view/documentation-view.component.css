@@ -1,0 +1,32 @@
+.bg {
+    background-image: url('../../../assets/Images/background.png');
+    background-size: cover;
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+h5,
+small {
+    color: #0e6ebe;
+}
+
+.color-green {
+    color: #d5e848;
+}
+
+.color-blue {
+    color: #0e6ebe;
+}
+
+.color-red {
+    color: #da0101df;
+}

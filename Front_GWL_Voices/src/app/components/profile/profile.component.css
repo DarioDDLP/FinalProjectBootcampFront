@@ -1,0 +1,86 @@
+* {
+    color: #0e6ebe;
+}
+
+.profile-img {
+    margin: 0 auto;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+    height: 275px;
+    width: 275px;
+    transition-duration: 0.5s;
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+.neon {
+    opacity: 0.92;
+    box-shadow: 0px 0px 5px 5px #d5e848, 0px 0px 10px 5px #0e6ebe;
+    overflow: hidden;
+    width: 75%;
+    margin-inline: auto;
+}
+
+@media (max-width: 992px) {
+    .neon {
+        width: 100%;
+    }
+}
+
+.img {
+    overflow: hidden;
+    border-radius: 100px;
+    height: 200px;
+    width: 200px;
+}
+
+@media (min-width: 992px) {
+    .img {
+        overflow: hidden;
+        border-radius: 150px;
+        height: 300px;
+        width: 300px;
+    }
+}
+
+.col1 {
+    box-shadow: 0px 0px 5px 0px #d5e848, 0px 0px 5px 0px #0e6ebe;
+}
+
+.bg {
+    background-image: url('../../../assets/Images/bolsa2.png');
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.profile-card {
+    opacity: 0.85;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+h6 {
+    color: #d5e848;
+}
+
+p {
+    color: #0e6ebe;
+    font-weight: bold;
+}
+
+h1 {
+    background: linear-gradient(45deg, rgb(14, 110, 190), rgb(213, 232, 72));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}

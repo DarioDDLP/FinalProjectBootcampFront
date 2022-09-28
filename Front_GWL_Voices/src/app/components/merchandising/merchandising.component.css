@@ -1,0 +1,39 @@
+.profile-img {
+    margin: 0 auto;
+    background-size: cover;
+    background-position: top center;
+    height: 300px;
+    width: 300px;
+    transition-duration: 0.5s;
+}
+
+.profile-img:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+
+.border-neon {
+    box-shadow: 0px 0px 5px 5px #d5e848, 0px 0px 10px 5px #0e6ebe !important;
+}
+
+.neon-off {
+    box-shadow: 0px 0px 5px 5px lightgray, 0px 0px 10px 5px lightgrey !important;
+}
+
+.btn-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: black;
+}
+
+.img-disabled {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}

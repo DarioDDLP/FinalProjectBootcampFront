@@ -1,0 +1,53 @@
+.viewPort {
+    height: 100vh;
+}
+
+* {
+    color: black;
+}
+
+.forgotPass {
+    font-family: 'Montserrat-Regular';
+}
+
+h2,
+label {
+    font-family: 'Montserrat-SemiBold';
+    color: #0e6ebe;
+}
+
+.bg {
+    background-image: url('../../../assets/Images/background.png');
+    background-size: cover;
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+    border-color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+form {
+    opacity: 0.92;
+    box-shadow: 0px 0px 5px 5px #d5e848, 0px 0px 10px 5px #0e6ebe;
+}
+
+input {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+input:focus {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #0e6ebe !important;
+}
+
+.error {
+    font-size: 12px;
+    color: tomato;
+}

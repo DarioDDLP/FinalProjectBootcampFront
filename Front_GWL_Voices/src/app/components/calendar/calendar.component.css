@@ -1,0 +1,23 @@
+.color-red {
+    color: #da0101df;
+}
+
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+.bg {
+    background-image: url('../../../assets/Images/bolsa2.png');
+}
+
+.box {
+    background-color: white;
+    opacity: 0.9;
+}

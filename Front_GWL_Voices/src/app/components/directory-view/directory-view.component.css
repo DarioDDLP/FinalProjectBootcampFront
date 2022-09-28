@@ -1,0 +1,32 @@
+button {
+    background-color: #d5e848;
+    color: #0e6ebe;
+}
+
+button:hover {
+    background-color: #dee7a1;
+    border-color: #dee7a1;
+    color: #ffffff;
+}
+
+.color-red {
+    color: #da0101df;
+}
+
+.color-briefcase {
+    color: lightseagreen
+}
+
+.color-phone {
+    color: #d5e848;
+}
+
+.color-envelope {
+    color: #0e6ebe;
+}
+
+.table-blue {
+    background-color: #0e6ebe;
+    color: #ffffff;
+    ;
+}

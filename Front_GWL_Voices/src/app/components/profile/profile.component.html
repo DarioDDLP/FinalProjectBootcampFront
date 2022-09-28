@@ -1,0 +1,35 @@
+<section>
+    <div class="container-fluid container-lg">
+        <div class="neon my-5 p-4">
+            <div class="row">
+                <div class="col2  col-xl-5 m-auto bg">
+                    <div class="">
+                        <div class="profile-img mt-3 profile-img"
+                            [style]="'background-image: url(' + user?.image + ')'">
+                        </div>
+                        <div class="mt-5 d-flex justify-content-center px-4 py-2">
+                            <button class="btn rounded-pill px-3 py-3"
+                                [routerLink]="[ '/dashboard', 'edit-profile']">Edit
+                                profile</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col2 col-md-12 col-lg-7 m-auto">
+                    <div class="profile-card shadow my-3 p-4 container-fluid">
+                        <h1 class="mb-3">{{user?.name | titlecase}} {{user?.surname | titlecase}}</h1>
+                        <h6>E-mail</h6>
+                        <p>{{user?.email}}</p>
+                        <h6>Phone</h6>
+                        <p>{{user?.phone}}</p>
+                        <h6>Work Group</h6>
+                        <p>{{user?.working_group}}</p>
+                        <h6>Live in</h6>
+                        <p>{{user?.live_in}}</p>
+                        <h6>Postal Address</h6>
+                        <p>{{user?.postal_address}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

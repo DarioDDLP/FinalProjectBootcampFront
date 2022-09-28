@@ -1,0 +1,56 @@
+<div class="container my-5">
+    <div class="mb-5">
+        <div class="p-3 text-center shadow">
+            <div class="">
+                <div class="row g-3">
+                    <div class="" [ngClass]="{ 'col-lg-12' : !user?.admin, 'col-lg-8' : user?.admin }">
+                        <div>
+                            <input type="text" id="titulo" class="form-control"
+                                placeholder="Filter by name example: Ruth... " (input)="filterByName($event)">
+                        </div>
+                    </div>
+                    <div *ngIf=user?.admin class="col-lg-4">
+                        <div class="input-group">
+                            <select class="form-select" id="inputGroupSelect01" (change)="filterByStatus($event)">
+                                <option selected value="">All members</option>
+                                <option value="0">Disabled</option>
+                                <option value="1">Enabled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center" *ngIf="user?.admin">
+        <button type="button" class="btn rounded-pill px-3 py-1 mb-5" [routerLink]="['/dashboard', 'signup']">Add New
+            Member</button>
+    </div>
+    <section class="row">
+        <div class="d-flex flex-wrap gap-5 gap-lg-5 justify-content-center">
+            <article class="member-card"
+                *ngFor="let member of members | paginate: {itemsPerPage: 9, currentPage: page }">
+                <div class="card shadow"
+                    [ngClass]="{ 'neon-off': member.status === 0, 'border-neon': member.status !== 0 }">
+                    <div class="profile-img mt-3"
+                        [style]="'background-image: url(http://localhost:3000/images/' + member.image + ')'"
+                        [ngClass]="{ 'img-disabled': member.status === 0 }">
+                    </div>
+                    <div class="card-body text-center mx-auto">
+                        <h5 class="card-title text-center mb-2">{{member.name}} {{member.surname}}</h5>
+                        <button [ngClass]="{ 'btn-disabled': member.status === 0 }" class="btn"
+                            [routerLink]="['/dashboard', 'send-email', member.id]">Send
+                            message</button>
+                        <button [ngClass]="{ 'btn-disabled': !user?.admin }" class="btn test2 ms-3"
+                            (click)="disableEnable(member)" *ngIf="user?.admin">{{member.status
+                            === 0 ? 'Enable profile' :
+                            'Disable profile'
+                            }}</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <pagination-controls class="text-center mt-5" (pageChange)="page = $event" [responsive]="true" [autoHide]="true"
+            previousLabel="Previous" nextLabel="Next">
+        </pagination-controls>
+    </section>
